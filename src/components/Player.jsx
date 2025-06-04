@@ -1,33 +1,39 @@
 import { useState } from "react";
 
-/* oma kokeilu
-const handleClick = () => {
-  setIsEditing(true);
-};
-*/
-export default function Player({ name, symbol }) {
+export default function Player({ initialName, symbol }) {
+  // huom initial name on propsina
+  const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
   function handleEditClick() {
-    setIsEditing(true);
+    setIsEditing((editng) => !editng);
+  }
+
+  function handleChange(event) {
+    setPlayerName(event.target.value);
   }
 
   {
   }
   /* className = .player-name */
-  let playerName = <span className="player-name"> {name} </span>;
+  let editablePlayerName = <span className="player-name"> {playerName} </span>;
+ 
   if (isEditing) {
-    playerName = <input type="text" required />;
+    editablePlayerName = 
+      // two way binding
+      <input type="text" required value={playerName} onChange={handleChange} />
+    
   }
+
   return (
     <li>
       {/* className = .player */}
       <span className="player">
-        {playerName}
+        {editablePlayerName}
         {/* className = .player-symbol */}
         <span className="player-symbol">{symbol}</span>
       </span>
-      <button onClick={handleEditClick}>Edit</button>
+      <button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</button>
     </li>
   );
 }
