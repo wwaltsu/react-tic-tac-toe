@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export default function Player({ initialName, symbol }) {
-  // huom initial name on propsina
+export default function Player({ initialName, symbol, isActive }) {
+
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -15,7 +15,6 @@ export default function Player({ initialName, symbol }) {
 
   {
   }
-  /* className = .player-name */
   let editablePlayerName = <span className="player-name"> {playerName} </span>;
  
   if (isEditing) {
@@ -26,11 +25,9 @@ export default function Player({ initialName, symbol }) {
   }
 
   return (
-    <li>
-      {/* className = .player */}
-      <span className="player">
+    <li className={isActive ? 'active' : undefined}>
+      <span className='player'>
         {editablePlayerName}
-        {/* className = .player-symbol */}
         <span className="player-symbol">{symbol}</span>
       </span>
       <button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</button>
