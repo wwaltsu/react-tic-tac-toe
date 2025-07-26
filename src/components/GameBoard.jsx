@@ -1,7 +1,3 @@
-import { useState } from "react";
-
-
-
 export default function GameBoard({ onSelectSquare, board }) {
 
   // Reminder of what was before refactoring
