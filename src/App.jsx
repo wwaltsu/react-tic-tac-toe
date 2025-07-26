@@ -38,8 +38,8 @@ let winner = null;
 
 for (const combination of WINNING_COMBINATIONS) {
   const firstSquareSymbol = gameboard[combination[0].row][combination[0].column]
-  const secondSquareSymbol = gameboard[combination[0].row][combination[1].column]
-  const thirdSquareSymbol = gameboard[combination[0].row][combination[2].column]
+  const secondSquareSymbol = gameboard[combination[1].row][combination[1].column]
+  const thirdSquareSymbol = gameboard[combination[2].row][combination[2].column]
 
   if( firstSquareSymbol && firstSquareSymbol === secondSquareSymbol && firstSquareSymbol === thirdSquareSymbol )
   winner = firstSquareSymbol;
@@ -81,7 +81,7 @@ for (const combination of WINNING_COMBINATIONS) {
             isActive={activePlayer === "O"}
           />
         </ol>
-        {winner && <p>You won, {winner}! </p>}
+         {winner && <p>You won, {winner}! </p>}
         <GameBoard
           onSelectSquare={handleSelectSquare}
           activePlayerSymbol={activePlayer}
